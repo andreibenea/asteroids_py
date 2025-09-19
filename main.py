@@ -1,17 +1,20 @@
 import pygame
 from constants import *
-from player import *
-from asteroid import *
-from asteroidfield import *
+from player import Player
+from asteroid import Asteroid
+from asteroidfield import AsteroidField
+from bullet import Bullet
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 updatables = pygame.sprite.Group()
 drawables = pygame.sprite.Group()
 asteroids = pygame.sprite.Group()
+bullets = pygame.sprite.Group()
 
 Player.containers = (updatables, drawables)
 Asteroid.containers = (asteroids, updatables, drawables)
 AsteroidField.containers = (updatables)
+Bullet.containers = (bullets, updatables, drawables)
 
 def main():
     x = SCREEN_WIDTH / 2
