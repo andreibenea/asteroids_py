@@ -8,6 +8,7 @@ class Player(CircleShape):
     def __init__(self, x, y):
         super().__init__(x, y, PLAYER_RADIUS)
         self.rotation = 0
+        self.gun_cooldown = 0
         print("circle")
     
     # in the player class
@@ -34,10 +35,13 @@ class Player(CircleShape):
     
     
     def shoot(self, dt):
-        bullet = Bullet(self.position[0], self.position[1], BULLET_RADIUS, self.rotation)
+        if self.gun_cooldown <= 0:
+            bullet = Bullet(self.position[0], self.position[1], BULLET_RADIUS, self.rotation)
+            self.gun_cooldown = PLAYER_RATE_OF_FIRE
         
     
     def update(self, dt):
+        self.gun_cooldown -= dt
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_a]:
