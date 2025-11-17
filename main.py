@@ -4,6 +4,7 @@ from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
 from bullet import Bullet
+from logger import log_state
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 updatables = pygame.sprite.Group()
@@ -33,6 +34,7 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
+        log_state()
         pygame.Surface.fill(screen, color="#000000")
         for drawable in drawables:
             drawable.draw(screen)
